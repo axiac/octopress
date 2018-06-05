@@ -56,10 +56,10 @@ module Octopress
     end
 
     def search_posts(search, posts)
-      posts = posts.select do |p|
+      posts = posts.docs.select do |p|
         p =~ /#{search.gsub(/\s/, '-')}/i 
       end
-      if posts.empty?
+      if posts.docs.empty?
         abort (STDOUT.tty? ? "No posts found matching: #{search}".red : '')
       else
         posts
